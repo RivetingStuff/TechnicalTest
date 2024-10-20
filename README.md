@@ -45,7 +45,7 @@ As a brief overview, this submission uses the following tools/frameworks:
     - Pip
 
 >[!NOTE]
->If you are on windows you may be required to install VS buildtools before you can install >greenlet (a dependency of playwright)
+>If you are on windows you may be required to install VS buildtools before you can install >greenlet (a dependency of playwright). 
  
 ### Installation
 
@@ -71,13 +71,13 @@ behavex ./
 >[!NOTE] 
 >Behavex suppresses all of the default behave logs. If you're running in headless mode (default) it is easy it mistake the lack of logs as the program hanging. The full suite shouldn't take more than 5 minutes on it's own. 
 >
->The log level can be changed with the "--logging-level" parameter 
+>The log level can be changed with the "--logging-level" parameter with either INFO, WARNING, or DEBUG
 
 To execute a single feature file:
 ```
 behavex -i <feature_file_name>
 ```
-You dont need to specify an extension to the file. The feature name it'self can also be used. 
+You dont need to specify an extension to the file. The feature name itself can also be used. 
 
 To execute all scenarios with a specific tag:
 ```
@@ -98,6 +98,7 @@ Current custom parameters supported:
 | baseURL        | set a static variable containing the base URL inherited by all POMs  | String |
 | headless       | enables headless mode. Any value other than 'true' is false | String |
 | browser        | sets target browser. Options are chrome, firefox, or chromium. Any unrecognised value is defaulted to chromium | String |
+| slow-mo        | slow down the browser by N milliseconds per operation                | int   | 
 
 # Reports
 
@@ -105,7 +106,7 @@ The run reports will be generated in the ./output folder. After running a test y
 
 # CI/CD
 
-The github workflow "Trigger behave suite" can be used to execute the full test suite. The behavex report will be zipped and uploaded as an artifact upon completion. There are also pre and post merge workflows that also run the test on both firefox and chrome targets.  
+The github workflow "Trigger behave suite" can be used to execute the full test suite. The behavex report will be zipped and uploaded as an artifact upon completion. There are also pre and post merge workflows that also run the tests on both firefox and chrome targets.  
 
 ## Limitations
 
