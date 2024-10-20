@@ -109,7 +109,7 @@ The github workflow "Trigger behave suite" can be used to execute the full test 
 
 ## Limitations
 
-The repeat5 tag isn't clear about what it's doing in reporting. It's collapsing all 5 scenario runs into a single success or failure, which would ideally be handled on the report serving side. 
+The @repeat5 tag isn't clear about what it's doing in reporting. It's collapsing all 5 scenario runs into a single success or failure, which would ideally be handled on the report serving side. 
 
 The current workflow doesn't merge test results between chrome and firefox runs and so can't return a single unified report. It also doesn't provide meaningful summary results to be displayed in github. The workflows are also currently duplicated instead of being reusable. 
 
@@ -120,8 +120,12 @@ Given the nature of unsupervised technical tests I've taken the liberty of makin
 Test case 1
 - I've split this testcase into two parts. It's not ideal, but I had to compromise between the Given-When-Then BDD format and staying as strictly to the source of truth as possible. The two parts are the 'submit an empty form and verify errors' stage and 'confirm that an error doesn't prevent valid submission'.
 
+- Since no error message or element was provided to verify against, I've used the banner at the top of the page. Originally I was also using the class of the parent element but felt like this wasn't very valuable (or true to the requirements). 
+
 Test case 2 
 - Repeating this test multiple times could be done a few different ways to different ends. For example, if we had dedicated runners we could load test the service with requests from multiple sources at once. For the sake of this submission I've opted to try and collapse all 5 instances of running this test into a single scenario without significantly increasing complexity. (i.e. If they all pass, it's one success). 
 
 Test case 3
 - In an effort to maintain transparency for a user reading the feature files, I decided to hardcode the expected values in the scenario. It's a trade off between having clear expectations and being inflexible to changes in the backend (e.g. price changes). Assuming we were in a managed slice, that's not an issue. 
+
+- Since no data was provided I've taken the prices that were present at the time of writting and assumed they what was intended.
