@@ -26,13 +26,13 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: behavex-html-report
+        name: behavex-chrome-html-report
         path: output/
     - name: Run firefox tests
       run: behavex -D browser=firefox
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: behavex-html-report
+        name: behavex-firefox-html-report
         path: output/
 
