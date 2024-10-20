@@ -23,6 +23,7 @@ async def click_on_contact_nav_button(context):
     current_page = ContactPage(context.page)
     await current_page.page.wait_for_url(current_page.page_url)
 
+
 @Given("the user clicks on the shop button")
 @async_run_until_complete
 async def click_on_shop_nav_button(context):
@@ -30,6 +31,7 @@ async def click_on_shop_nav_button(context):
     await base_page.navigate_to_shop_page()
     current_page = ShopPage(context.page)
     await current_page.page.wait_for_url(current_page.page_url)
+
 
 @When("the user clicks on the Cart button")
 @async_run_until_complete
