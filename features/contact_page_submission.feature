@@ -16,6 +16,7 @@ Scenario: Missing mandatory contact fields doesn't block submission (Test case 1
     And   the user submits the form 
     Then  the success banner displays the message "Thanks Example, we appreciate your feedback"
 
+@repeat5
 Scenario: User can submit the contact form (Test case 2) 
     When the user enters the forename "Example"
     And  the user enters the email "email@example.com"

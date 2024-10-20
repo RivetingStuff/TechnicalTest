@@ -35,6 +35,11 @@ async def browser_chrome(context):
 async def before_scenario(context, scenario):
     await use_fixture(browser_chrome, context)
 
+@async_run_until_complete
+async def before_feature(context, feature):
+    for scenario in feature.scenarios:
+        if "repeat5" in scenario.effective_tags:
+            patch_scenario_to_repeat(scenario, repeats=5)
 
 @async_run_until_complete
 async def after_step(context, step):
