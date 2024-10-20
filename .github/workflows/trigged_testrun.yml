@@ -1,14 +1,25 @@
-name: Run playwright tests
+name: Trigger behave suite
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
-      browser:
-        required: true
-        type: string
-      logLevel:
-        required: false
-        type: string
-        default: INFO
+        logLevel:
+            description: 'Log level'
+            required: true
+            default: 'INFO'
+            type: choice
+            options:
+            - INFO
+            - WARNING
+            - DEBUG
+        browser:
+            description: 'Target browser'
+            required: true
+            default: 'chrome'
+            type: choice
+            options:
+            - chrome
+            - chromium
+            - firefox
     
 jobs:
   test:
@@ -29,11 +40,12 @@ jobs:
     - name: Run chrome tests
       run: behavex -D browser=$BROWSER --logging-level $LEVEL
       env:
-        LEVEL: ${{ inputs.logLevel }}
         BROWSER: ${{ inputs.browser }}
+        LEVEL: ${{ inputs.logLevel }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: behavex-chrome-html-report
+        name: behavex-$BROWSER-html-report
         path: output/
-
+      env:
+        BROWSER: ${{ inputs.browser }}
