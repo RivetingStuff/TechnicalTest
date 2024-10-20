@@ -37,7 +37,7 @@ jobs:
         pip install -r requirements.txt
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
-    - name: Run chrome tests
+    - name: Run behave tests
       run: behavex -D browser=$BROWSER --logging-level $LEVEL
       env:
         BROWSER: ${{ inputs.browser }}
@@ -45,7 +45,5 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: behavex-$BROWSER-html-report
+        name: behavex-html-report
         path: output/
-      env:
-        BROWSER: ${{ inputs.browser }}
