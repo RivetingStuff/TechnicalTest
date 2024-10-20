@@ -4,7 +4,6 @@ from models.base_page import BasePage
 from models.contact_page import ContactPage
 from models.shop_page import ShopPage
 from models.cart_page import CartPage
-
 from environment import async_run_until_complete
 
 

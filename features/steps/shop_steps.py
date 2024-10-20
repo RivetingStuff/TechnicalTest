@@ -1,10 +1,10 @@
+import re
+
 from playwright.async_api import expect
 from behave import *
-import re
 
 from models.shop_page import ShopPage
 from models.cart_page import CartPage
-from models.base_page import BasePage
 from environment import async_run_until_complete
 
 
