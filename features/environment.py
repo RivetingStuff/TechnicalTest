@@ -1,10 +1,12 @@
+from time import time
+
 from behave import fixture, use_fixture
 from behave.api.async_step import async_run_until_complete
 from playwright.async_api import async_playwright
+from behavex_images import image_attachments
+
 from models.base_page import BasePage
 from utility.scenario_repeat import patch_scenario_to_repeat
-from behavex_images import image_attachments
-from time import time
 
 
 @fixture

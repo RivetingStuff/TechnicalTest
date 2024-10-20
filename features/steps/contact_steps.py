@@ -1,6 +1,7 @@
+import re
+
 from playwright.async_api import expect
 from behave import *
-import re
 
 from models.contact_page import ContactPage
 from environment import async_run_until_complete

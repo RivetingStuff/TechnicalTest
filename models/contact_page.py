@@ -1,5 +1,3 @@
-from enum import Enum
-
 from playwright.async_api import Page
 
 from models.base_page import BasePage

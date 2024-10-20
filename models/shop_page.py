@@ -1,7 +1,8 @@
-from models.base_page import BasePage
 import logging
 
 from playwright.async_api import Page
+
+from models.base_page import BasePage
 
 
 class ShopPage(BasePage):
