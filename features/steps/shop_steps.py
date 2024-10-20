@@ -16,7 +16,7 @@ async def buy_items_by_table(context):
         await current_page.buy_product(row["item_name"], int(row["amount"]))
 
 
-@Then("the itemized cart prices match the following")
+@Then("the itemised cart prices match the following")
 @async_run_until_complete
 async def verify_cart_table(context):
     current_page = CartPage(context.page)
@@ -25,7 +25,7 @@ async def verify_cart_table(context):
         await expect(price_cell).to_have_text(f"${row['price']}")
 
 
-@Then("the itemized cart subtotals match the following")
+@Then("the itemised cart subtotals match the following")
 @async_run_until_complete
 async def verify_cart_table(context):
     current_page = CartPage(context.page)
