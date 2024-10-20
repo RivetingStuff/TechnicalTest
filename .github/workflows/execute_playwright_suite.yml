@@ -1,10 +1,15 @@
 name: Run playwright tests
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-
+  workflow_call:
+    inputs:
+      browser:
+        required: true
+        type: string
+      logLevel:
+        required: false
+        type: string
+        default: INFO
+    
 jobs:
   test:
     timeout-minutes: 10
@@ -22,17 +27,13 @@ jobs:
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
     - name: Run chrome tests
-      run: behavex -D browser=chrome
+      run: behavex -D browser=$BROWSER --logging-level $LEVEL
+      env:
+        LEVEL: ${{ inputs.logLevel }}
+        BROWSER: ${{ inputs.browser }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: behavex-chrome-html-report
-        path: output/
-    - name: Run firefox tests
-      run: behavex -D browser=firefox
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: behavex-firefox-html-report
         path: output/
 
