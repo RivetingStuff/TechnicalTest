@@ -12,12 +12,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run firefox tests
-      uses: .github/workflows/execute_playwright_suite.yml
+      uses: ./.github/workflows/execute_playwright_suite.yml
       with: 
         browser: firefox
         logLevel: INFO
     - name: Run chrome tests
-      uses: .github/workflows/execute_playwright_suite.yml
+      uses: ./.github/workflows/execute_playwright_suite.yml
       with: 
           browser: chrome
           logLevel: INFO
