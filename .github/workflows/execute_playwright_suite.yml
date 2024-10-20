@@ -1,0 +1,39 @@
+name: Run playwright tests
+on:
+  workflow_call:
+    inputs:
+      browser:
+        required: true
+        type: string
+      logLevel:
+        required: false
+        type: string
+        default: INFO
+    
+jobs:
+  test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.7'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Ensure browsers are installed
+      run: python -m playwright install --with-deps
+    - name: Run chrome tests
+      run: behavex -D browser=$BROWSER --logging-level $LEVEL
+      env:
+        LEVEL: ${{ inputs.logLevel }}
+        BROWSER: ${{ inputs.browser }}
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: behavex-chrome-html-report
+        path: output/
+
