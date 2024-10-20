@@ -6,6 +6,7 @@ from utility.scenario_repeat import patch_scenario_to_repeat
 from behavex_images import image_attachments
 from time import time
 
+
 @fixture
 async def browser_chrome(context):
     base_url = context.config.userdata.get("baseURL")
@@ -35,16 +36,18 @@ async def browser_chrome(context):
 async def before_scenario(context, scenario):
     await use_fixture(browser_chrome, context)
 
+
 @async_run_until_complete
 async def before_feature(context, feature):
     for scenario in feature.scenarios:
         if "repeat5" in scenario.effective_tags:
             patch_scenario_to_repeat(scenario, repeats=5)
 
+
 @async_run_until_complete
 async def after_step(context, step):
-    if step.status == 'failed':
-            screenshot_filename = f"{''.join(step.name.split())}-{int(time())}.png"
-            screenshot_path = f"./output/screenshots/{screenshot_filename}"
-            await context.page.screenshot(path=screenshot_path, full_page=True)
-            image_attachments.attach_image_file(context, screenshot_path)
+    if step.status == "failed":
+        screenshot_filename = f"{''.join(step.name.split())}-{int(time())}.png"
+        screenshot_path = f"./output/screenshots/{screenshot_filename}"
+        await context.page.screenshot(path=screenshot_path, full_page=True)
+        image_attachments.attach_image_file(context, screenshot_path)
