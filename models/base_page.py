@@ -33,4 +33,3 @@ class BasePage:
 
     def construct_url(self, endpoint):
         return f"{BasePage.base_url}{endpoint}"
-    

@@ -14,14 +14,16 @@ class ShopPage(BasePage):
 
     async def get_product_listitem(self, product_name):
         logging.info("Looking for {product_name} in shop page")
-        product_locator = self.shop_listitems.filter(has=self.page.get_by_text(product_name))
+        product_locator = self.shop_listitems.filter(
+            has=self.page.get_by_text(product_name)
+        )
         logging.debug(f"Product locator {product_locator}")
         return product_locator
 
     async def buy_product(self, product_name, count=1):
-        """ 
-        Given a product name this function finds the corresponding <li> element 
-        on the shop page, finds the associated buy button, and clicks it a 
+        """
+        Given a product name this function finds the corresponding <li> element
+        on the shop page, finds the associated buy button, and clicks it a
         specified number of times.
 
         Parameters:
@@ -33,6 +35,6 @@ class ShopPage(BasePage):
             "link", name="Buy"
         )
         logging.debug(f"Buy button locator: {buy_button}")
-        for index in range(1, count+1):
+        for index in range(1, count + 1):
             logging.debug(f"Buying '{product_name}' number {index}/{count}")
             await buy_button.click()

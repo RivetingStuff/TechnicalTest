@@ -14,12 +14,12 @@ class CartPage(BasePage):
         self.cart_total_text = page.get_by_text("Total:")
 
     async def get_cart_price_cell_by_product(self, product_name):
-        """ 
-        Takes a product name, finds a correspondting table row, and extracts 
-        the pricing information. 
+        """
+        Takes a product name, finds a correspondting table row, and extracts
+        the pricing information.
 
         Expected cart table structure: Product name > Price > Quantity > Subtotal
-        
+
         Parameters:
             product_name (String): Name of product being examined
 
@@ -35,12 +35,12 @@ class CartPage(BasePage):
         return product_row.locator("td").nth(1)
 
     async def get_cart_subtotal_cell_by_product(self, product_name):
-        """ 
-        Takes a product name, finds a correspondting table row, and extracts 
-        the subtotal information. 
+        """
+        Takes a product name, finds a correspondting table row, and extracts
+        the subtotal information.
 
         Expected cart table structure: Product name > Price > Quantity > Subtotal
-        
+
         Parameters:
             product_name (String): Name of product being examined
 
@@ -54,4 +54,3 @@ class CartPage(BasePage):
         )
         logging.debug(product_row)
         return product_row.locator("td").nth(3)
-    
