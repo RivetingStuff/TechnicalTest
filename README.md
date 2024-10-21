@@ -69,9 +69,10 @@ To execute the full test suite:
 behavex ./
 ```
 >[!NOTE] 
->Behavex suppresses all of the default behave logs. If you're running in headless mode (default) it is easy it mistake the lack of logs as the program hanging. The full suite shouldn't take more than 5 minutes on it's own. 
+>Behavex suppresses all of the default behave logs except on failure. If you're running in headless mode (default) it is easy it mistake the lack of logs as the program hanging. The full suite shouldn't take more than 5 minutes on it's own. 
 >
 >The log level can be changed with the "--logging-level" parameter with either INFO, WARNING, or DEBUG
+
 
 To execute a single feature file:
 ```
@@ -113,6 +114,8 @@ The github workflow "Trigger behave suite" can be used to execute the full test 
 The @repeat5 tag isn't clear about what it's doing in reporting. It's collapsing all 5 scenario runs into a single success or failure, which would ideally be handled on the report serving side. 
 
 The current workflow doesn't merge test results between chrome and firefox runs and so can't return a single unified report. It also doesn't provide meaningful summary results to be displayed in github. The workflows are also currently duplicated instead of being reusable. 
+
+Fixtures should be used to clean up a lot of the duplicate test setup scattered around, but wasnt prioritised for this submission. 
 
 ## Assumptions
 
